@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block body %}
+<div class="card center"><video id="v" autoplay playsinline muted></video>
+<div id="res" class="res idle">الكاميرا مغلقة</div>
+<div id="info"></div>
+<button id="on" onclick="start()">تشغيل الكاميرا</button>
+<button class="danger" onclick="stop()">إغلاق الكاميرا</button></div>{% endblock %}
+{% block js %}<script src="/static/guard.js"></script>{% endblock %}

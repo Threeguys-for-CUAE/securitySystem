@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block body %}
+<div class="card"><h3>التقرير اليومي</h3>
+<input type="date" id="d" onchange="load()"> <a id="csv" class="btn">تصدير CSV</a>
+<div id="sum" class="sum"></div>
+<table><thead><tr><th>الوقت</th><th>الرقم الجامعي</th><th>الطالب</th><th>النتيجة</th><th>السبب</th><th>التطابق</th></tr></thead>
+<tbody id="tb"></tbody></table></div>{% endblock %}
+{% block js %}<script>
+const L={allowed:'سماح',denied_fees:'رفض - رسوم',denied_unknown:'رفض - غير مسجل',denied_status:'رفض - موقوف'};
+const d=document.getElementById('d');d.valueAsDate=new Date();
+async function load(){const r=await (await fetch('/api/report?date='+d.value)).json();
+document.getElementById('csv').href='/report.csv?date='+d.value;
+document.getElementById('sum').innerHTML=Object.entries(r.counts).map(([k,v])=>`<span class="chip ${k==='allowed'?'ok':'bad'}">${L[k]||k}: ${v}</span>`).join('')||'لا توجد بيانات';
+document.getElementById('tb').innerHTML=r.rows.map(x=>`<tr><td>${x.t}</td><td>${x.student_no}</td><td>${x.student_name||'-'}</td><td>${L[x.result]||x.result}</td><td>${x.reason}</td><td>${(x.score||0).toFixed(2)}</td></tr>`).join('')}
+load();</script>{% endblock %}

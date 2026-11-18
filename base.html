@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}بوابة الحرم{% endblock %}</title>
+<link rel="icon" href="../static/college-logo.png" type="image/x-icon">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+{% if session.role %}
+<nav><b>نظام بوابة الحرم</b>
+{% if session.role in ('registrar','admin') %}
+<a href="/registrar">الطلاب</a>
+<a href="/reports">التقارير</a>
+<a href="/signin">التسجيل </a>
+{% endif %}
+{% if session.role in ('guard','admin') %}
+<a href="/guard">البوابة</a>{% endif %}
+<span class="sp"></span>
+<span>{{ session.name }}</span>
+<a href="/logout">خروج</a>
+</nav>{% endif %}
+<main>{% block body %}{% endblock %}</main>{% block js %}{% endblock %}
+</body>
+</html>

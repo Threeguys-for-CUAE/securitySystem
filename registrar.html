@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block body %}
+<head>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<div class="grid"><div class="card"><h3>تسجيل طالب</h3>
+<video id="v" autoplay playsinline muted></video><div id="shots"></div>
+<button onclick="cam()">تشغيل الكاميرا</button><button onclick="snap()">التقاط صورة</button>
+<button class="danger" onclick="camOff()">إيقاف</button>
+<input id="no" placeholder="الرقم الجامعي"><input id="nm" placeholder="الاسم الكامل">
+<input id="fc" placeholder="الكلية"><label><input type="checkbox" id="fp"> الرسوم مدفوعة</label>
+<button onclick="save()">حفظ الطالب</button><p id="msg"></p></div>
+<div class="card"><h3>الطلاب</h3><input id="s" placeholder="بحث..." oninput="draw()">
+<table><thead><tr><th>الرقم</th><th>الاسم</th><th>الكلية</th><th>الرسوم</th><th>الحالة</th><th></th></tr></thead>
+<tbody id="tb"></tbody></table></div></div>{% endblock %}
+{% block js %}<script src="/static/registrar.js"></script>{% endblock %}

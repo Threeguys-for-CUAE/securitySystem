@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block body %}
+    <head>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <form method="post" class="card narrow" id="sign-fo">
+          <h2>تسجيل مستخدم </h2>
+          <p id="error"></p>
+        <input type="text" placeholder="اسم المستخدم" name="guardname" id="username" required>
+        <input type="password" placeholder="كلمة السر " name="password1" id="password1" required >
+        <input type="text" placeholder="الدور " name="role" id="role" required >
+        <button id="btu_submit">تسجيل</button>
+        {%if err %}<p>نواجه بعض المشاكل</p>{% endif %}
+    </form>
+    <script src="/static/signin.js"></script>
+    {% endblock %}
